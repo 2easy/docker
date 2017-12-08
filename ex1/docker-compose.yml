@@ -1,0 +1,23 @@
+version: '3'
+services:
+  haproxy:
+    build:
+      context: ./haproxy/
+    ports:
+      - "4321:80"
+
+  micro1:
+    build:
+      context: ./micro1/
+    volumes:
+      - "./micro1/html:/usr/share/nginx/html:ro"
+    ports:
+      - "1235:5000"
+
+  micro2:
+    build:
+      context: ./micro2/
+    volumes:
+      - "./micro2/html:/usr/share/nginx/html:ro"
+    ports:
+      - "1234:5000"

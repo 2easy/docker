@@ -1,0 +1,22 @@
+version: '3'
+services:
+  haproxy:
+    image: 2easy/haproxy:v1
+    ports:
+      - "80:80"
+
+  micro1:
+    build:
+      context: ./src/
+    ports:
+      - "8000:5000"
+    environment:
+      - HOST_NUM=1
+
+  micro2:
+    build:
+      context: ./src/
+    ports:
+      - "8001:5000"
+    environment:
+      - HOST_NUM=2
